@@ -53,8 +53,8 @@ static const char os_launch_hook[] = {
 
 static inline void _delay(u32 ticks)
 {
-	u32 end = HW_REG(LT_TIMER) + ticks;
-	while(HW_REG(LT_TIMER) < end);
+	u32 now = HW_REG(LT_TIMER);
+	while((HW_REG(LT_TIMER) - now) < ticks);
 }
 
 static u32 spi_read(int bit_count)
